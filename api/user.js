@@ -3,12 +3,13 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const router = express.Router();
 const User = require('../model/schema');
+const validate = require('../validate');
 const auth = require("../auth/AuthController");
 const secret = process.env.secret;
 const jwt = require('jsonwebtoken');
 
 /*sending data */
-router.post('/register', auth.authPost, async function (req, res) {
+router.post('/register', validate, auth.authPost, async function (req, res) {
 
     try {
 
@@ -71,6 +72,19 @@ router.post('/login', async (req, res) => {
         })
     }
 
+});
+
+router.get('/home', async (req, res) => {
+    try {
+        const user = await User.find();
+        res.status(200).json({
+            data: {
+                message: user
+            }
+        });
+    } catch (err) {
+        res.json("Error " + err);
+    }
 });
 
 
