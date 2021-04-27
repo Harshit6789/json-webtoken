@@ -14,13 +14,13 @@ mongoose.connect(url , {useNewUrlParser:true , useUnifiedTopology: true} , (err)
 
 app.use(express.json());
 
-const employee = require('./routers/employees');
+const users = require('./api/user');
 
 app.use("/home" , (req , res)=>{
     res.json("Welcome...")
 });
 
-app.use("/api" , employee);
+app.use("/api" , users);
 
 app.listen(3111,()=>{
     console.log("Server started");
