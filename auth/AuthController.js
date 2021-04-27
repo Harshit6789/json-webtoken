@@ -27,7 +27,7 @@ try{
         const bearerHeader = req.headers['authorization'];
         
         if(typeof bearerHeader !== 'undefined'){
-            const bearer = bearerHeader.split(' ')[1];
+            const bearer = bearerHeader.split('')[1];
             console.log(bearer);
             req.token = bearer;
             jwt.verify(req.token , secret , (err , authData)=>{
