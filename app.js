@@ -5,10 +5,10 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const url = process.env.db;
 
-mongoose.connect(url , {useNewUrlParser:true , useUnifiedTopology: true} , (err)=>{
-    if(!err) {
-        console.log("Connected");
-    }else {
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
+    if (!err) {
+        console.log("db is Connected.....");
+    } else {
         console.log("Error in connecting " + err);
     }
 });
@@ -18,13 +18,9 @@ app.use(express.json());
 
 const users = require('./api/user');
 
-app.use("/home" , (req , res)=>{
-    res.json("Welcome...")
-});
+app.use("/api", users);
 
-app.use("/api" , users);
+app.listen(4000, () => {
+    console.log("Server started.....");
 
-app.listen(3111,()=>{
-    console.log("Server started");
-    
 })

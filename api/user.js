@@ -64,7 +64,7 @@ router.post('/login', async (req, res) => {
             error: "invalid password!!!!!!!"
         })
     } else {
-        jwt.sign(req.body, secret, { expiresIn: '500s' }, (err, token) => {
+        jwt.sign(req.body, secret, { expiresIn: '1000s' }, (err, token) => {
             res.json({
                 id: Email.id,
                 Token: token
