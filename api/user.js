@@ -12,7 +12,6 @@ const jwt = require('jsonwebtoken');
 router.post('/register', validate, auth.authPost, async function (req, res) {
 
     try {
-
         const isEmail = await User.findOne({ email: req.body.email });
         if (isEmail) {
             return res.status(400).json({

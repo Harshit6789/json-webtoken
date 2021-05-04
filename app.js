@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors');
+const users = require('./api/user');
 const url = process.env.db;
 
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
@@ -16,11 +17,5 @@ mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, (err)
 app.use(cors("http://localhost:3000"));
 app.use(express.json());
 
-const users = require('./api/user');
-
-app.use("/api", users);
-
-app.listen(4000, () => {
-    console.log("Server started.....");
-
-})
+app.use("/apis", users);
+app.listen(4000, console.log("Server started....."));
